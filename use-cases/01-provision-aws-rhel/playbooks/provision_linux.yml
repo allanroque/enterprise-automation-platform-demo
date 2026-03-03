@@ -27,6 +27,4 @@
           key_name: "{{ key_name }}"
           ssh_public_key: "{{ ssh_public_key }}"
           tags_common: "{{ tags_common }}"
-        backend_config_files: >-
-          {{ tf_backend_config_file | length > 0
-             | ternary([tf_backend_config_file], omit) }}
+        backend_config_files: "{{ (tf_backend_config_file | length > 0) | ternary([tf_backend_config_file], omit) }}"
