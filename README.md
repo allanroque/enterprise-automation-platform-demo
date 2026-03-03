@@ -2,7 +2,7 @@
 
 Repositório de labs e demos usando **Ansible Automation Platform (AAP)** para orquestrar automações de infraestrutura e configuração.
 
-O primeiro caso de uso provisiona **4 instâncias RHEL na AWS** usando **Terraform** acionado por **Ansible** (via coleção `cloud.terraform`) e executado dentro do AAP.
+O primeiro caso de uso provisiona **RHEL na AWS** (VPC, EC2, S3, tags FinOps) usando **Terraform** acionado por **Ansible** (via coleção `cloud.terraform`) e executado dentro do AAP.
 
 ## Estrutura (alto nível)
 
@@ -23,7 +23,7 @@ Diretório: `use-cases/01-provision-aws-rhel/`
 
 Este caso de uso demonstra:
 
-- Provisionamento de 4 instâncias **RHEL** na AWS com **Terraform**;
+- Provisionamento de instâncias **RHEL** na AWS (lab FinOps: VPC, security group, EC2, buckets S3) com **Terraform**;
 - Orquestração via **Ansible** usando o módulo `cloud.terraform.terraform`;
 - Execução dentro do **Ansible Automation Platform** usando um **Execution Environment** customizado com Terraform.
 
@@ -35,7 +35,7 @@ Este caso de uso demonstra:
    - Um **Credential Type** para o backend Terraform;
    - Uma **Credential** baseada nesse tipo;
    - Um **Project** apontando para este repositório;
-   - Um **Job Template** usando o playbook `use-cases/01-provision-aws-rhel/playbooks/provision.yml`.
+   - Um **Job Template** usando o playbook `use-cases/01-provision-aws-rhel/playbooks/provision_linux.yml`.
 
 Para detalhes específicos do caso de uso, veja o `README.md` em `use-cases/01-provision-aws-rhel/`.
 

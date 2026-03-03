@@ -1,17 +1,20 @@
 ## Use-case 01 – Provisionar 4 RHEL na AWS
 
-Este diretório contém o primeiro lab/demo do repositório, que provisiona **4 instâncias RHEL na AWS** usando **Terraform** orquestrado via **Ansible Automation Platform (AAP)**.
+Este diretório contém o primeiro lab/demo do repositório, que provisiona instâncias **RHEL na AWS** (VPC, security group, EC2 e buckets S3) usando **Terraform** orquestrado via **Ansible Automation Platform (AAP)**.
 
 ### Estrutura
 
 ```text
 use-cases/01-provision-aws-rhel/
 ├── README.md
+├── vars/
+│   └── vars.yml
 ├── playbooks/
-│   ├── provision.yml
+│   ├── provision_linux.yml
 │   └── destroy.yml
 └── terraform/
     ├── main.tf
+    ├── provider.tf
     ├── variables.tf
     └── outputs.tf
 ```
@@ -26,7 +29,7 @@ use-cases/01-provision-aws-rhel/
 
 ### Backend do Terraform (S3)
 
-O `backend "s3" {}` em `terraform/main.tf` é configurado via um arquivo externo, injetado pela AAP através de um **Credential Type** específico de backend Terraform.
+O `backend "s3" {}` em `terraform/provider.tf` é configurado via um arquivo externo, injetado pela AAP através de um **Credential Type** específico de backend Terraform.
 
 Exemplo de conteúdo (placeholders) está em `docs/sample-terraform-backend-credential` na raiz do repositório.
 
@@ -46,7 +49,7 @@ Exemplo de conteúdo (placeholders) está em `docs/sample-terraform-backend-cred
    - Crie um Project no AAP apontando para este repositório Git.
 
 4. **Job Template**
-   - Playbook: `use-cases/01-provision-aws-rhel/playbooks/provision.yml`
+   - Playbook: `use-cases/01-provision-aws-rhel/playbooks/provision_linux.yml`
    - Inventory: pode ser “localhost” ou um inventário vazio, já que o play roda em `localhost`.
    - Execution Environment: selecione o EE customizado que você construiu.
    - Credentials:
@@ -79,7 +82,7 @@ terraform apply
 
 # Via Ansible
 cd ..
-ansible-playbook playbooks/provision.yml
+ansible-playbook playbooks/provision_linux.yml
 ```
 
 > Atenção: se você não configurar o backend S3 via variável `TF_BACKEND_CONFIG_FILE`, o Terraform usará o backend padrão local (estado em disco) quando rodar fora do AAP.

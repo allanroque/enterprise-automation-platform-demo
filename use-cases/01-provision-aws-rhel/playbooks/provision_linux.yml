@@ -1,8 +1,11 @@
 ---
-- name: Provisionar 4 RHEL na AWS via Terraform
+- name: Provision Linux
   hosts: localhost
   connection: local
   gather_facts: false
+
+  vars_files:
+    - "{{ playbook_dir }}/../vars/vars.yml"
 
   vars:
     terraform_project_path: "{{ playbook_dir }}/../terraform"
@@ -20,4 +23,3 @@
         backend_config_files: >-
           {{ tf_backend_config_file | length > 0
              | ternary([tf_backend_config_file], omit) }}
-

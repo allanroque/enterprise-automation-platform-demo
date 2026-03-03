@@ -33,12 +33,12 @@
 - **Inventory**: um inventário mínimo (pode ser apenas `localhost`).
 - **Project**: o Project criado acima.
 - **Execution Environment**: o EE customizado deste lab.
-- **Playbook**: `use-cases/01-provision-aws-rhel/playbooks/provision.yml`
+- **Playbook**: `use-cases/01-provision-aws-rhel/playbooks/provision_linux.yml`
 - **Credentials**:
   - Credencial AWS (separada, se necessário, para o provider);
   - Credencial de backend Terraform.
 - **Extra Vars (opcional)**:
-  - `aws_region`, `instance_type`, `instance_count`, `name_prefix`, se quiser sobrescrever os defaults do `variables.tf` ou de `group_vars/all.yml`.
+  - `aws_region`, `instance_count`, `instance_types`, `key_name`, `tags_common`, se quiser sobrescrever os defaults do `variables.tf` ou de `vars/vars.yml`.
 
 #### Destroy
 

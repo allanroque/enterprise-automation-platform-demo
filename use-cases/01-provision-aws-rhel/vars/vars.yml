@@ -1,0 +1,20 @@
+---
+# Valores padrão alinhados ao Terraform (finops-lab).
+# Para repassar ao Terraform via AAP, use Extra Vars no Job Template
+# com os mesmos nomes: aws_region, instance_count, instance_types, key_name, tags_common.
+aws_region: "us-east-2"
+instance_count: 6
+instance_types:
+  - "t3.micro"
+  - "t3.micro"
+  - "t3.small"
+  - "t3.small"
+  - "t3.medium"
+  - "t3.medium"
+key_name: "aroque-key"
+tags_common:
+  CostCenter: "1234"
+  Environment: "finops-lab"
+  Project: "ansible-demo"
+  owner: "aroque"
+  operating_system: "rhel"

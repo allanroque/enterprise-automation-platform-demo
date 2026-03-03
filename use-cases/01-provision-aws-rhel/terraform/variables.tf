@@ -1,24 +1,35 @@
 variable "aws_region" {
-  description = "Região AWS onde as instâncias RHEL serão criadas"
+  description = "Região AWS"
   type        = string
-  default     = "us-east-1"
-}
-
-variable "instance_type" {
-  description = "Tipo de instância EC2 para as máquinas RHEL"
-  type        = string
-  default     = "t3.small"
+  default     = "us-east-2"
 }
 
 variable "instance_count" {
-  description = "Quantidade de instâncias RHEL a serem criadas"
+  description = "Número de instâncias EC2"
   type        = number
-  default     = 4
+  default     = 6
 }
 
-variable "name_prefix" {
-  description = "Prefixo para o nome (tag Name) das instâncias"
+variable "instance_types" {
+  description = "Tipos das instâncias"
+  type        = list(string)
+  default     = ["t3.micro", "t3.micro", "t3.small", "t3.small", "t3.medium", "t3.medium"]
+}
+
+variable "key_name" {
+  description = "Nome do par de chaves SSH na AWS para as instâncias"
   type        = string
-  default     = "eap-demo-rhel"
+  default     = "aroque-key"
 }
 
+variable "tags_common" {
+  description = "Tags comuns aplicadas a todos os recursos"
+  type        = map(string)
+  default = {
+    CostCenter        = "1234"
+    Environment       = "finops-lab"
+    Project           = "ansible-demo"
+    owner             = "aroque"
+    operating_system  = "rhel"
+  }
+}
