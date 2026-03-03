@@ -19,6 +19,16 @@ use-cases/01-provision-aws-rhel/
     └── outputs.tf
 ```
 
+### Acesso SSH às VMs
+
+O par de chaves **aroque-key** (chave pública em `vars/vars.yml` como `ssh_public_key`) é criado no Terraform e associado às instâncias. Use a **chave privada** `aroque-key.pem` para acessar:
+
+```bash
+ssh -i aroque-key.pem ec2-user@<ip_publico>
+```
+
+Os IPs públicos saem no output do Terraform (`public_ips`) ou no inventário após o apply.
+
 ### Pré-requisitos gerais
 
 - Conta AWS com permissões para:

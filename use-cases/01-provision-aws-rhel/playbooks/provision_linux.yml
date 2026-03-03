@@ -20,6 +20,13 @@
         project_path: "{{ terraform_project_path }}"
         state: present
         force_init: true
+        variables:
+          aws_region: "{{ aws_region }}"
+          instance_count: "{{ instance_count }}"
+          instance_types: "{{ instance_types }}"
+          key_name: "{{ key_name }}"
+          ssh_public_key: "{{ ssh_public_key }}"
+          tags_common: "{{ tags_common }}"
         backend_config_files: >-
           {{ tf_backend_config_file | length > 0
              | ternary([tf_backend_config_file], omit) }}

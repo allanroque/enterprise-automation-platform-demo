@@ -1,7 +1,8 @@
 ---
 # Valores padrão alinhados ao Terraform (finops-lab).
+# Acesso às VMs: ssh -i aroque-key.pem ec2-user@<ip_publico>
 # Para repassar ao Terraform via AAP, use Extra Vars no Job Template
-# com os mesmos nomes: aws_region, instance_count, instance_types, key_name, tags_common.
+# com os mesmos nomes: aws_region, instance_count, instance_types, key_name, ssh_public_key, tags_common.
 aws_region: "us-east-2"
 instance_count: 6
 instance_types:
@@ -12,6 +13,8 @@ instance_types:
   - "t3.medium"
   - "t3.medium"
 key_name: "aroque-key"
+# Chave pública correspondente a aroque-key.pem (acesso SSH às instâncias)
+ssh_public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDaQUXDWCWpTLEeeLi2F5kao4BxehRuANJgFZ1NIaHeng9Qf3nSuTI41xhQMzahfZenFmOBJYMgtW7SEtTExARwC1wPpSlGelndfDbDPxwSbp/JylQX8K6izta08S1vmTuf2T4/SP9hTPNSgZ+c3pQgtvFG9sTtCck13V5dQm/NR7Slz5wuLsmlWilKYv2BtuYYRoktZ4YeETPDhCx0MJmpyTkNB0rwgiFHe1scRUI/ZTR4XxVVRTnq8162IHiNjD45h6z3oBIQpozcfwU532cWZC7H7ChZwnP+XE3Nx2XCMrydvAAXI8bPGpfa5qq1M2PAXbU5sASSJJGJGmQu7g7Z"
 tags_common:
   CostCenter: "1234"
   Environment: "finops-lab"

@@ -22,6 +22,12 @@ variable "key_name" {
   default     = "aroque-key"
 }
 
+variable "ssh_public_key" {
+  description = "Conteúdo da chave pública SSH (ex.: aroque-key.pem.pub) para acesso às instâncias"
+  type        = string
+  sensitive   = true
+}
+
 variable "tags_common" {
   description = "Tags comuns aplicadas a todos os recursos"
   type        = map(string)

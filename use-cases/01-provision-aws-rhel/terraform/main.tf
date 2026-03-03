@@ -76,6 +76,14 @@ resource "aws_security_group" "lab_sg" {
 }
 
 # ----------------------------------------
+# PAR DE CHAVES SSH (acesso às VMs: ssh -i aroque-key.pem ec2-user@<ip>)
+# ----------------------------------------
+resource "aws_key_pair" "aroque" {
+  key_name   = var.key_name
+  public_key = var.ssh_public_key
+}
+
+# ----------------------------------------
 # AMI RHEL
 # ----------------------------------------
 data "aws_ami" "rhel" {
